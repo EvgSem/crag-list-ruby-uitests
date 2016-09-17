@@ -31,14 +31,26 @@ class CraglistSearchPage
   end
 
   def outputResult(fileName, resultString)
+    consoleOutput = String::new(resultString)
+    filePath = './features/results/'+ fileName
+
+    if File.file?(filePath)
+      prevResultsfile = File.open(filePath, "r")  
+
+      while (line = prevResultsfile.gets)
+        doesInclude = resultString.include? line
+        if doesInclude && line.to_s != ''
+          consoleOutput.slice! line
+        end
+      end
+    end 
+
     File.open('./features/results/'+ fileName, 'w') {|f| f.write(resultString) }
-    print resultString
+    print consoleOutput
   end
 
   def mapRowToString(htmlRow) 
-    title = "\n" + htmlRow.text()
-    url = "\n" + htmlRow.attribute('href') + "\n"
-    title + url
+    "\n" + htmlRow.text() + ": " + htmlRow.attribute('href') + "\n"
   end
 
   def generateResultFileName 
