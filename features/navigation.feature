@@ -11,4 +11,4 @@ Feature: Craigslist navigation
    Examples:
    |area         |subarea |section   |category |
    |los angeles  |wst     |community |artists  |
-   |los angeles  |wst     |community |childcare|
+   # |los angeles  |wst     |community |childcare|
