@@ -6,8 +6,9 @@ Feature: Craigslist navigation
     When I select area "<area>"
     And I select subarea "<subarea>"
     And I select category "<category>" in section "<section>"
-    # Then I should see the result list
+    Then I should see the result list
 
    Examples:
    |area         |subarea |section   |category |
    |los angeles  |wst     |community |artists  |
+   |los angeles  |wst     |community |childcare|

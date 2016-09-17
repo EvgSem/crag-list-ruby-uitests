@@ -12,5 +12,5 @@ When /^I select subarea "(.*?)"$/ do |subarea|
 end
 
 When /^I select category "(.*?)" in section "(.*?)"$/ do |category, section|
-  @craglist_home_page.select_category_in_section(category, section)
+  @craglist_search_page = @craglist_home_page.select_category_in_section(category, section)
 end

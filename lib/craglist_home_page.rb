@@ -17,8 +17,14 @@ class CraglistHomePage
   end
 
   def select_category_in_section(category, section)
-    link  = @driver.find_element(:xpath => "//a[descendant::*[contains(., '" + category + "')]][ancestor::*[descendant::*[contains(., '" + section + "')]]]");
+    xpath = "//a[descendant::*[contains(., '" + category + "')]][ancestor::*[descendant::*[contains(., '" + section + "')]]]"
+    wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+    
+    wait.until { @driver.find_element(:xpath => xpath) }
+    link  = @driver.find_element(:xpath => xpath);
+    
     link.click();
+    CraglistSearchPage.new(@driver);
   end
 
   def verify_page
