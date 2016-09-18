@@ -34,8 +34,6 @@ class CraglistSearchPage
     fileDir = "./features/results/";
     filePath = fileDir + fileName
 
-
-
     consoleOutput = excludePreviousResults(filePath, resultString) 
 
     Dir.mkdir(fileDir) unless File.exists?(fileDir)

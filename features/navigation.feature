@@ -12,4 +12,4 @@ Feature: Craigslist navigation
    |area        |subarea |section   |category  |
    |los angeles |wst     |community |artists   |
    |las vegas   |        |jobs      |government|
-   |merced      |        |service   |legal     |
+   |merced      |        |jobs      |business  |
