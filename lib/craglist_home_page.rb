@@ -4,16 +4,18 @@ class CraglistHomePage
   end
 
   def select_area(area)
-  	link  = @driver.find_element(:link_text, 'los angeles');
+  	link  = @driver.find_element(:link_text, area);
   	link.click();
   end
 
   def select_subarea(subarea)
-    wait = Selenium::WebDriver::Wait.new(:timeout => 10)
-    wait.until { @driver.find_element(:link_text, subarea) }
+    if subarea != ""
+      wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+      wait.until { @driver.find_element(:link_text, subarea) }
 
-    link = @driver.find_element(:link_text, subarea)
-    link.click();
+      link = @driver.find_element(:link_text, subarea)
+      link.click();
+    end
   end
 
   def select_category_in_section(category, section)

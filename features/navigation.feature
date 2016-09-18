@@ -9,6 +9,7 @@ Feature: Craigslist navigation
     Then I should see the result list
 
    Examples:
-   |area         |subarea |section   |category |
-   |los angeles  |wst     |community |artists  |
-   # |los angeles  |wst     |community |childcare|
+   |area        |subarea |section   |category  |
+   |los angeles |wst     |community |artists   |
+   |las vegas   |        |jobs      |government|
+   |merced      |        |service   |legal     |

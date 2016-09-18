@@ -31,21 +31,15 @@ class CraglistSearchPage
   end
 
   def outputResult(fileName, resultString)
-    consoleOutput = String::new(resultString)
-    filePath = './features/results/'+ fileName
+    fileDir = "./features/results/";
+    filePath = fileDir + fileName
 
-    if File.file?(filePath)
-      prevResultsfile = File.open(filePath, "r")  
 
-      while (line = prevResultsfile.gets)
-        doesInclude = resultString.include? line
-        if doesInclude && line.to_s != ''
-          consoleOutput.slice! line
-        end
-      end
-    end 
 
-    File.open('./features/results/'+ fileName, 'w') {|f| f.write(resultString) }
+    consoleOutput = excludePreviousResults(filePath, resultString) 
+
+    Dir.mkdir(fileDir) unless File.exists?(fileDir)
+    File.open(filePath, 'w') {|f| f.write(resultString) }
     print consoleOutput
   end
 
@@ -58,6 +52,23 @@ class CraglistSearchPage
     url.slice! "https://"
     fileName = url.gsub("/", '-')
   end 
+  
+  def excludePreviousResults(filePath, currentResults)
+    result = String::new(currentResults)
+    
+    if File.file?(filePath)
+      prevResultsfile = File.open(filePath, "r")  
+
+      while (line = prevResultsfile.gets)
+        doesInclude = currentResults.include? line
+        if doesInclude && line.to_s != ''
+          result.slice! line
+        end
+      end
+    end
+
+    result 
+  end
 
   def verify_page
     wait = Selenium::WebDriver::Wait.new(:timeout => 100)
