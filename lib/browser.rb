@@ -1,17 +1,19 @@
 class Browser
-  	attr_reader :driver
+  @@driver = nil
 
-  	def initialize(browser_name)
-  		@driver = Selenium::WebDriver.for :chrome
-    	delete_cookies
-  	end
+	def initialize (driver)
+		@@driver = driver
+	end
+
+  def generate_abstract_page
+    return AbstractPage.new(@@driver)
+  end
   	
 	def delete_cookies
-    	@driver.manage.delete_all_cookies
-  	end
+    @@driver.manage.delete_all_cookies
+  end
 
-	def open_page(url)
-    	@driver.navigate.to(url)
-	    CraglistHomePage.new(@driver)
-  	end
+  def quit
+    @@driver.quit
+  end
 end

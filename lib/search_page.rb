@@ -1,6 +1,6 @@
-class CraglistSearchPage
+class SearchPage < AbstractPage
 	def initialize(driver)
-    @driver = driver
+    super (driver)
 	end
   	
 	def show_result 
@@ -10,7 +10,7 @@ class CraglistSearchPage
     begin
       verify_page()
 
-      resultElements = @driver.find_element(:id, "sortable-results")
+      resultElements = @@driver.find_element(:id, "sortable-results")
                               .find_elements(:css, ".row a.hdrlnk")
 
       resultElements.each { |item| resultList = resultList + mapRowToString(item)}
@@ -20,14 +20,14 @@ class CraglistSearchPage
 	end
 
   def tryNavigateNext
-    nextButton = @driver.find_element(:css, "a.next")
+    nextButton = @@driver.find_element(:css, "a.next")
     isNextButtonDisplayed = nextButton.displayed? == true
 
     if isNextButtonDisplayed
       nextButton.click();
     end 
 
-    isNextButtonDisplayed
+    return isNextButtonDisplayed
   end
 
   def outputResult(fileName, resultString)
@@ -46,7 +46,7 @@ class CraglistSearchPage
   end
 
   def generateResultFileName 
-    url = @driver.current_url
+    url = @@driver.current_url
     url.slice! "https://"
     fileName = url.gsub("/", '-')
   end 
@@ -70,6 +70,6 @@ class CraglistSearchPage
 
   def verify_page
     wait = Selenium::WebDriver::Wait.new(:timeout => 100)
-    wait.until { @driver.find_elements(:id => 'sortable-results') }
+    wait.until { @@driver.find_elements(:id => 'sortable-results') }
   end
 end

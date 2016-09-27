@@ -1,1 +1,1 @@
-chrome: DRIVER=chrome
+chrome: DRIVER = chrome
