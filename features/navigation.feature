@@ -11,5 +11,5 @@ Feature: Craigslist navigation
    Examples:
    |area        |subarea |section   |category  |
    |los angeles |wst     |community |artists   |
-   |las vegas   |        |jobs      |government|
-   |merced      |        |jobs      |business  |
+   # |las vegas   |        |jobs      |government|
+   # |merced      |        |jobs      |business  |

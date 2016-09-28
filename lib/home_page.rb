@@ -1,21 +1,15 @@
+require 'page-object'
+
 class HomePage < AbstractPage
-  # include PageObject
-
-  # attr_accessor :area_param, :subarea_param, :section, :category
-
-  # link(:area, :link_text => area)
-  # link(:subarea, :link_text => subarea)
-  # link(:category_in_section, :xpath => "//a[descendant::*[contains(., '" + category + "')]][ancestor::*[descendant::*[contains(., '" + section + "')]]]")
-  # div(:rightbar, :id => 'rightbar')
-
+  # attr_accessor :area_param, :subarea_param, :section_param, :category_param
 
   def initialize(driver)
     super(driver)
   end
 
-  def select_area(area)
-  	link  = @@driver.find_element(:link_text, area);
-  	link.click()
+  def select_area(areaParam)
+    pageObj = HomePageObj.new(@@driver)
+    pageObj.area()
     return HomePage.new(@@driver)
   end
 
